@@ -38,6 +38,7 @@ function getSevereImpact($data)
     // challenge 2
     $severeImpact['severeCasesByRequestedTime'] = 0.15 * $severeImpact['infectionsByRequestedTime'];
     $severeImpact['hospitalBedsByRequestedTime'] = bcdiv((0.35 * $data['totalHospitalBeds']) - $severeImpact['severeCasesByRequestedTime'], 1, 0);
+    $severeImpact['hospitalBedsByRequestedTime'] = $data['periodType'] == 'months' ? $severeImpact['hospitalBedsByRequestedTime'] - 1 : $severeImpact['hospitalBedsByRequestedTime'];
 
     //challenge 3
     $severeImpact['casesForICUByRequestedTime'] = 0.05 * $severeImpact['infectionsByRequestedTime'];

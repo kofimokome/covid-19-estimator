@@ -23,7 +23,7 @@ function getImpact($data)
 
     // challenge 3
     $impact['casesForICUByRequestedTime'] = 0.05 * $impact['infectionsByRequestedTime'];
-    $impact['casesForVentilatorsByRequestedTime'] = floor(0.02 * $impact['infectionsByRequestedTime']);
+    $impact['casesForVentilatorsByRequestedTime'] = bcdiv(0.02 * $impact['infectionsByRequestedTime'], 1, 0);
 
     return $impact;
 }
@@ -41,7 +41,7 @@ function getSevereImpact($data)
 
     //challenge 3
     $severeImpact['casesForICUByRequestedTime'] = 0.05 * $severeImpact['infectionsByRequestedTime'];
-    $severeImpact['casesForVentilatorsByRequestedTime'] = floor(0.02 * $severeImpact['infectionsByRequestedTime']);
+    $severeImpact['casesForVentilatorsByRequestedTime'] = bcdiv(0.02 * $severeImpact['infectionsByRequestedTime'], 1, 0);
 
     return $severeImpact;
 }
@@ -57,9 +57,9 @@ function getInfectionsByRequestedTime($type, $duration, $currentlyInfected, $avg
             $days = $duration * 30;
             break;
     }
-    $setOfThreeDays = floor($days / 3);
+    $setOfThreeDays = bcdiv($days / 3, 1, 0);
     $infectionsByRequestedTime = $currentlyInfected * pow(2, $setOfThreeDays);
-    $dollarsInFlight = floor(($infectionsByRequestedTime * $avgDailyIncomeInUSD * $avgDailyIncomePopulation) / $days);
+    $dollarsInFlight = bcdiv(($infectionsByRequestedTime * $avgDailyIncomeInUSD * $avgDailyIncomePopulation) / $days, 1, 0);
 
     return ['infectionsByRequestedTime' => $infectionsByRequestedTime, 'dollarsInFlight' => $dollarsInFlight];
 }

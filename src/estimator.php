@@ -19,7 +19,7 @@ function getImpact($data)
 
     // challenge 2
     $impact['severeCasesByRequestedTime'] = 0.15 * $impact['infectionsByRequestedTime'];
-    $impact['hospitalBedsByRequestedTime'] = floor((0.35 * $data['totalHospitalBeds']) - $impact['severeCasesByRequestedTime']) + 1;
+    $impact['hospitalBedsByRequestedTime'] = bcdiv((0.35 * $data['totalHospitalBeds']) - $impact['severeCasesByRequestedTime'],0);
 
     // challenge 3
     $impact['casesForICUByRequestedTime'] = 0.05 * $impact['infectionsByRequestedTime'];
@@ -37,7 +37,7 @@ function getSevereImpact($data)
 
     // challenge 2
     $severeImpact['severeCasesByRequestedTime'] = 0.15 * $severeImpact['infectionsByRequestedTime'];
-    $severeImpact['hospitalBedsByRequestedTime'] = floor((0.35 * $data['totalHospitalBeds']) - $severeImpact['severeCasesByRequestedTime']) + 1;
+    $severeImpact['hospitalBedsByRequestedTime'] = bcdiv((0.35 * $data['totalHospitalBeds']) - $severeImpact['severeCasesByRequestedTime'],0);
 
     //challenge 3
     $severeImpact['casesForICUByRequestedTime'] = 0.05 * $severeImpact['infectionsByRequestedTime'];

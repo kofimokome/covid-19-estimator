@@ -6,9 +6,16 @@
   "author": "Charles Odili",
   "license": "MIT",
   "scripts": {
-    "lint": "phplint src/**/*.php"
+    "lint": "phplint src/**/*.php",
+    "test": "jest tests/ch-5 --json --outputFile=audits/ch-5.json --noStackTrace"
   },
   "devDependencies": {
     "phplint": "^2.0.1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "axios": "^0.19.2",
+    "properties-reader": "^1.0.0"
   }
 }
